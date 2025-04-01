@@ -11,11 +11,19 @@ class ListaCompra
     }
     public function tratarInstruccion($instruccion) : string {
 
-        $salida = '';
-
         $argumentosInstruccion = explode(' ', strtolower($instruccion));
 
-        if ($argumentosInstruccion[0] === 'añadir') {
+        if ($argumentosInstruccion[0] === 'vaciar') {
+            if (! empty($this->listaProductos)) {
+                foreach ($this->listaProductos as $producto => $cantidad) {
+                    unset($this->listaProductos[$producto]);
+                }
+            }
+
+            return "";
+        }
+
+        else if ($argumentosInstruccion[0] === 'añadir') {
 
             if (array_key_exists($argumentosInstruccion[1], $this->listaProductos)) {
                 $this->listaProductos[$argumentosInstruccion[1]]++;
@@ -24,11 +32,6 @@ class ListaCompra
                 $this->listaProductos[$argumentosInstruccion[1]] = intval($argumentosInstruccion[2] ?? '1');
             }
 
-            foreach ($this->listaProductos as $producto => $cantidad) {
-                $salida .= $producto . ' x' . $cantidad . ', ';
-            }
-
-            return $salida;
         }
 
         else if ($argumentosInstruccion[0] === 'eliminar') {
@@ -37,16 +40,11 @@ class ListaCompra
             }
 
             unset($this->listaProductos[$argumentosInstruccion[1]]);
-
-            foreach ($this->listaProductos as $producto => $cantidad) {
-                $salida .= $producto . ' x' . $cantidad . ', ';
-            }
-
-            return $salida;
         }
 
-        else if ($argumentosInstruccion[0] === 'vaciar') {
-
+        $salida = '';
+        foreach ($this->listaProductos as $producto => $cantidad) {
+            $salida .= $producto . ' x' . $cantidad . ', ';
         }
 
         return $salida;
