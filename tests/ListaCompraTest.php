@@ -14,5 +14,7 @@ class ListaCompraTest extends TestCase {
         $listaCompra = new ListaCompra();
         $respuesta = $listaCompra->tratarInstruccion('añadir pan 4');
         $this->assertEquals('pan x4, ', $respuesta);
+        $respuesta = $listaCompra->tratarInstruccion('añadir pan');
+        $this->assertEquals('pan x5, ', $respuesta);
     }
 }

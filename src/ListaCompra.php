@@ -4,7 +4,11 @@ namespace Deg540\DockerPHPBoilerplate;
 
 class ListaCompra
 {
-    private $listaProductos = array();
+    public array $listaProductos = [];
+
+    public function __construct() {
+        $this->listaProductos = [];
+    }
     public function tratarInstruccion($instruccion) : string {
 
         $salida = '';
@@ -13,14 +17,20 @@ class ListaCompra
 
         if ($argumentosInstruccion[0] === 'añadir') {
 
-            $listaProductos[$argumentosInstruccion[1]] = intval($argumentosInstruccion[2]);
+            if (array_key_exists($argumentosInstruccion[1], $this->listaProductos)) {
+                $this->listaProductos[$argumentosInstruccion[1]]++;
+            }
+            else {
+                $this->listaProductos[$argumentosInstruccion[1]] = intval($argumentosInstruccion[2] ?? '1');
+            }
 
-            foreach ($listaProductos as $producto => $cantidad) {
+            foreach ($this->listaProductos as $producto => $cantidad) {
                 $salida .= $producto . ' x' . $cantidad . ', ';
             }
-            return $salida;
 
+            return $salida;
         }
+
         return $salida;
     }
 }
