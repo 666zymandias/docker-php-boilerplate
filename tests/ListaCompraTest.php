@@ -13,11 +13,11 @@ class ListaCompraTest extends TestCase {
     public function addProductoAListaCompra() {
         $listaCompra = new ListaCompra();
 
-        $respuesta = $listaCompra->tratarInstruccion('añadir pan 4');
+        $respuesta = $listaCompra->tratarInstruction('añadir pan 4');
         $this->assertEquals('pan x4, ', $respuesta);
-        $respuesta = $listaCompra->tratarInstruccion('añadir pan');
+        $respuesta = $listaCompra->tratarInstruction('añadir pan');
         $this->assertEquals('pan x5, ', $respuesta);
-        $respuesta = $listaCompra->tratarInstruccion('añadir cafe 2');
+        $respuesta = $listaCompra->tratarInstruction('añadir cafe 2');
         $this->assertEquals('pan x5, cafe x2, ', $respuesta);
     }
 
@@ -27,16 +27,16 @@ class ListaCompraTest extends TestCase {
     public function eliminarProductoListaCompra() {
         $listaCompra = new ListaCompra();
 
-        $respuesta = $listaCompra->tratarInstruccion('añadir pan 4');
+        $respuesta = $listaCompra->tratarInstruction('añadir pan 4');
         $this->assertEquals('pan x4, ', $respuesta);
-        $respuesta = $listaCompra->tratarInstruccion('añadir pan');
+        $respuesta = $listaCompra->tratarInstruction('añadir pan');
         $this->assertEquals('pan x5, ', $respuesta);
-        $respuesta = $listaCompra->tratarInstruccion('añadir cafe 2');
+        $respuesta = $listaCompra->tratarInstruction('añadir cafe 2');
         $this->assertEquals('pan x5, cafe x2, ', $respuesta);
 
-        $respuesta = $listaCompra->tratarInstruccion('eliminar pan');
+        $respuesta = $listaCompra->tratarInstruction('eliminar pan');
         $this->assertEquals('cafe x2, ', $respuesta);
-        $respuesta = $listaCompra->tratarInstruccion('eliminar harina');
+        $respuesta = $listaCompra->tratarInstruction('eliminar harina');
         $this->assertEquals('El producto seleccionado no existe', $respuesta);
 
     }
@@ -47,16 +47,16 @@ class ListaCompraTest extends TestCase {
     public function vaciarListaCompra() {
         $listaCompra = new ListaCompra();
 
-        $respuesta = $listaCompra->tratarInstruccion('añadir pan 4');
+        $respuesta = $listaCompra->tratarInstruction('añadir pan 4');
         $this->assertEquals('pan x4, ', $respuesta);
-        $respuesta = $listaCompra->tratarInstruccion('añadir cafe 2');
+        $respuesta = $listaCompra->tratarInstruction('añadir cafe 2');
         $this->assertEquals('pan x4, cafe x2, ', $respuesta);
-        $respuesta = $listaCompra->tratarInstruccion('añadir harina');
+        $respuesta = $listaCompra->tratarInstruction('añadir harina');
         $this->assertEquals('pan x4, cafe x2, harina x1, ', $respuesta);
 
-        $respuesta = $listaCompra->tratarInstruccion('vaciar');
+        $respuesta = $listaCompra->tratarInstruction('vaciar');
         $this->assertEquals('', $respuesta);
-        $respuesta = $listaCompra->tratarInstruccion('vaciar');
+        $respuesta = $listaCompra->tratarInstruction('vaciar');
         $this->assertEquals('', $respuesta);
     }
 }

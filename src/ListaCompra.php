@@ -9,11 +9,11 @@ class ListaCompra
     public function __construct() {
         $this->listaProductos = array();
     }
-    public function tratarInstruccion($instruccion) : string {
+    public function tratarInstruction($instruction) : string {
 
-        $argumentosInstruccion = explode(' ', strtolower($instruccion));
+        $argumentosInstruction = explode(' ', strtolower($instruction));
 
-        if ($argumentosInstruccion[0] === 'vaciar') {
+        if ($argumentosInstruction[0] === 'vaciar') {
             if (! empty($this->listaProductos)) {
                 foreach ($this->listaProductos as $producto => $cantidad) {
                     unset($this->listaProductos[$producto]);
@@ -23,23 +23,23 @@ class ListaCompra
             return "";
         }
 
-        else if ($argumentosInstruccion[0] === 'añadir') {
+        else if ($argumentosInstruction[0] === 'añadir') {
 
-            if (array_key_exists($argumentosInstruccion[1], $this->listaProductos)) {
-                $this->listaProductos[$argumentosInstruccion[1]]++;
+            if (array_key_exists($argumentosInstruction[1], $this->listaProductos)) {
+                $this->listaProductos[$argumentosInstruction[1]]++;
             }
             else {
-                $this->listaProductos[$argumentosInstruccion[1]] = intval($argumentosInstruccion[2] ?? '1');
+                $this->listaProductos[$argumentosInstruction[1]] = intval($argumentosInstruction[2] ?? '1');
             }
 
         }
 
-        else if ($argumentosInstruccion[0] === 'eliminar') {
-            if (!array_key_exists($argumentosInstruccion[1], $this->listaProductos)) {
+        else if ($argumentosInstruction[0] === 'eliminar') {
+            if (!array_key_exists($argumentosInstruction[1], $this->listaProductos)) {
                 return "El producto seleccionado no existe";
             }
 
-            unset($this->listaProductos[$argumentosInstruccion[1]]);
+            unset($this->listaProductos[$argumentosInstruction[1]]);
         }
 
         $salida = '';
