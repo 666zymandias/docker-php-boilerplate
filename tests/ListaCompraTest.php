@@ -56,6 +56,7 @@ class ListaCompraTest extends TestCase {
 
         $respuesta = $listaCompra->tratarInstruccion('vaciar');
         $this->assertEquals('', $respuesta);
-
+        $respuesta = $listaCompra->tratarInstruccion('vaciar');
+        $this->assertEquals('', $respuesta);
     }
 }
