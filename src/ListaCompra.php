@@ -4,7 +4,7 @@ namespace Deg540\DockerPHPBoilerplate;
 
 class ListaCompra
 {
-    public array $listaProductos;
+    private array $listaProductos;
 
     public function __construct() {
         $this->listaProductos = array();
@@ -32,6 +32,9 @@ class ListaCompra
         }
 
         else if ($argumentosInstruccion[0] === 'eliminar') {
+            if (!array_key_exists($argumentosInstruccion[1], $this->listaProductos)) {
+                return "El elemento no existe";
+            }
 
             unset($this->listaProductos[$argumentosInstruccion[1]]);
 
