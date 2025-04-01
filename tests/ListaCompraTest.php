@@ -1,0 +1,18 @@
+<?php
+
+namespace Deg540\DockerPHPBoilerplate\Test;
+
+use Deg540\DockerPHPBoilerplate\ListaCompra;
+use PHPUnit\Framework\TestCase;
+
+class ListaCompraTest extends TestCase {
+
+    /**
+     * @test
+     */
+    public function addProductoAListaCompra() {
+        $listaCompra = new ListaCompra();
+        $respuesta = $listaCompra->tratarInstruccion('añadir pan 4');
+        $this->assertEquals('pan x4, ', $respuesta);
+    }
+}
