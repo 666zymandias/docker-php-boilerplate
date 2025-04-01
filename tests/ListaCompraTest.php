@@ -38,7 +38,7 @@ class ListaCompraTest extends TestCase {
         $this->assertEquals('cafe x2, ', $respuesta);
 
         $respuesta = $listaCompra->tratarInstruccion('eliminar harina');
-        $this->assertEquals('El elemento no existe', $respuesta);
+        $this->assertEquals('El producto seleccionado no existe', $respuesta);
 
     }
 }

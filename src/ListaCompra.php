@@ -33,7 +33,7 @@ class ListaCompra
 
         else if ($argumentosInstruccion[0] === 'eliminar') {
             if (!array_key_exists($argumentosInstruccion[1], $this->listaProductos)) {
-                return "El elemento no existe";
+                return "El producto seleccionado no existe";
             }
 
             unset($this->listaProductos[$argumentosInstruccion[1]]);
@@ -43,6 +43,10 @@ class ListaCompra
             }
 
             return $salida;
+        }
+
+        else if ($argumentosInstruccion[0] === 'vaciar') {
+
         }
 
         return $salida;
